@@ -56,7 +56,23 @@ def max_area(heights):
     return max_area_seen
 
 
+def move_zeroes(nums):
+    """Move all zeroes to the end, keeping order of non-zeroes. In place.
+    Slow/fast pointers: slow = next slot for a non-zero, fast = scanner.
+    Time: O(n), Space: O(1)
+    """
+    slow = 0
+    for fast in range(len(nums)):
+        if nums[fast] != 0:
+            nums[slow] = nums[fast]
+            slow += 1
+    for i in range(slow, len(nums)):
+        nums[i] = 0
+    return nums
+
+
 if __name__ == "__main__":
     print(is_palindrome("Racecar"))  # True
     print(reverse_array([1, 2, 3, 4, 5]))  # [5, 4, 3, 2, 1]
     print(max_area([1, 8, 6, 2, 5, 4, 8, 3, 7]))  # 49
+    print(move_zeroes([0, 1, 0, 3, 12]))  # [1, 3, 12, 0, 0]
